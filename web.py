@@ -19,7 +19,7 @@ st.markdown("""
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
     
     html, body, [class*="css"] {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Inter', times new roman;
     }
     
     /* Background keseluruhan dengan warna biru muda */
@@ -60,7 +60,7 @@ st.markdown("""
     
     /* Styling untuk card KPI */
     .css-1oe5cao {
-        background-color: white;
+        background-color: blue;
         border-radius: 10px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         padding: 15px;
@@ -77,7 +77,7 @@ st.markdown("""
     .js-plotly-plot .plotly {
         border-radius: 10px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        background-color: white;
+        background-color: blue;
     }
     
     /* Menghilangkan padding berlebih di atas */
@@ -97,6 +97,14 @@ st.markdown("""
         background-color: #e1f5fe;
         border-left: 5px solid #03a9f4;
     }
+    .info-box-italic {
+    background-color: #e1f5fe;
+    border-left: 5px solid #03a9f4;
+    padding: 1rem; /* Menambahkan padding agar rapi */
+    border-radius: 5px;
+    font-style: italic; /* <<< INI YANG MEMBUAT TEKS MIRING */
+    color: #01579b; /* Sedikit mengubah warna teks agar kontras lebih baik */
+}
     
     /* Styling untuk warning box */
     .stWarning {
@@ -120,8 +128,8 @@ st.markdown("""
         text-align: center;
         padding: 20px;
         color: #4a90e2;
-        font-size: 14px;
-        margin-top: 30px;
+        font-size: 16px;
+        margin-top: 20px;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -226,11 +234,11 @@ st.markdown(f"""
     </div>
 """, unsafe_allow_html=True)
 
-st.info("""
-    Selamat datang di Dashboard Kinerja Rumah Sakit Haisa. Dashboard ini dirancang untuk memberikan wawasan mendalam 
-    mengenai efisiensi operasional dan kualitas pelayanan klinis berdasarkan data pasien secara nyata. 
-    Gunakan filter di sisi kiri untuk memfokuskan pencarian Anda.
-""")
+st.markdown("""
+    <div class="info-box-italic">
+        <p>Selamat datang di Dashboard Kinerja Rumah Sakit Haisa. Dashboard ini dirancang untuk memberikan wawasan mendalam mengenai efisiensi operasional dan kualitas pelayanan klinis berdasarkan data pasien secara nyata. Gunakan filter di sisi kiri untuk memfokuskan pencarian Anda.</p>
+    </div>
+""", unsafe_allow_html=True)
 
 # 5. Ringkasan KPI Utama (Metric Cards)
 st.markdown("### Key Performance Indicator ")
