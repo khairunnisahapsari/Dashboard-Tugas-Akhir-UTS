@@ -219,34 +219,53 @@ else:
 st.sidebar.markdown("---")
 st.sidebar.markdown("© 2024 Tim Analisis RS Haisa")
 
-# 4. Header Utama & Konteks (Dengan Logo - FIXED)
-# Logo placeholder (kalau belum punya file logo_haisa.png)
-logo_base64 = """
-data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAACXBIWXMAAAsTAAALEwEAmpwYAAAc
-... (base64 logo placeholder - aku kasih yang simple)
-"""
+# ===== HEADER BARU - 100% BERUBAH =====
+col1, col2 = st.columns([1, 3])
 
-# Cek apakah file logo ada, kalau ada pakai file, kalau tidak pakai placeholder
-import os
-if os.path.exists("logo_haisa.png"):
-    logo_url = "logo_haisa.png"
-else:
-    # Buat logo text sederhana sebagai fallback
-    logo_url = "https://via.placeholder.com/200x80/4a90e2/ffffff?text=RS+HAISA"
-
-st.markdown(f"""
-    <div class="header-container">
-        <div class="logo-container">
-            <img src="https://via.placeholder.com/250x90/4a90e2/ffffff?text=RS+HAISA" 
-                 alt="Logo Rumah Sakit Haisa">
-        </div>
-        <div class="text-container">
-            <h1>🏥 Pusat Analisis Kinerja Rumah Sakit Haisa</h1>
-            <p>Visualisasi Data Klinis & Operasional | Periode: {start_date.strftime('%B %Y')} - {end_date.strftime('%B %Y')}</p>
-        </div>
+with col1:
+    st.markdown("""
+    <div style="
+        background: linear-gradient(135deg, #4a90e2 0%, #7cb9e8 100%);
+        padding: 30px 20px;
+        border-radius: 15px;
+        text-align: center;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    ">
+        <img src="https://via.placeholder.com/200x80/4a90e2/ffffff?text=🏥+HAISA" 
+             alt="Logo RS Haisa" 
+             style="max-height: 70px; border-radius: 8px;">
     </div>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
+with col2:
+    st.markdown(f"""
+    <div style="
+        padding: 20px 0;
+        color: #1e3a8a;
+    ">
+        <h1 style="
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 0;
+            color: #1e40af;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        ">Pusat Analisis Kinerja</h1>
+        <h2 style="
+            font-size: 1.3rem;
+            margin: 5px 0 0 0;
+            color: #3b82f6;
+            font-weight: 500;
+        ">Rumah Sakit Haisa</h2>
+        <p style="
+            font-size: 1rem;
+            color: #64748b;
+            margin: 10px 0 0 0;
+        ">Periode: {start_date.strftime('%B %Y')} - {end_date.strftime('%B %Y')}</p>
+    </div>
+    """, unsafe_allow_html=True)
 st.info("""
     Selamat datang di Dashboard Kinerja Rumah Sakit Haisa. Dashboard ini dirancang untuk memberikan wawasan mendalam 
     mengenai efisiensi operasional dan kualitas pelayanan klinis berdasarkan data pasien secara nyata. 
