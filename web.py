@@ -12,7 +12,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Custom CSS untuk tampilan lebih manusiawi dan penataan logo
+# Custom CSS untuk tampilan lebih manusiawi
 st.markdown("""
 <style>
     /* Font yang lebih manusiawi */
@@ -27,7 +27,7 @@ st.markdown("""
         background-color: #e6f2ff;
     }
     
-    /* Membuat Background Header dengan Gradasi Biru Medis dan Flexbox untuk Logo */
+    /* Membuat Background Header dengan Gradasi Biru Medis yang lebih lembut */
     .header-container {
         background: linear-gradient(135deg, #4a90e2 0%, #7cb9e8 100%);
         padding: 40px;
@@ -36,22 +36,6 @@ st.markdown("""
         margin-bottom: 30px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         font-family: 'Inter', sans-serif;
-        
-        /* Penataan Flexbox untuk Logo dan Teks */
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    
-    /* Styling untuk kontainer logo */
-    .logo-container img {
-        max-height: 80px; /* Sesuaikan ukuran logo di sini */
-        width: auto;
-    }
-    
-    /* Styling untuk kontainer teks */
-    .text-container {
-        text-align: right;
     }
     
     .header-container h1 {
@@ -120,6 +104,17 @@ st.markdown("""
         border-left: 5px solid #ffc107;
     }
     
+    /* Styling untuk selectbox dan date input */
+    .stSelectbox > div > div {
+        background-color: white;
+        border-radius: 8px;
+    }
+    
+    .stDateInput > div > div {
+        background-color: white;
+        border-radius: 8px;
+    }
+    
     /* Styling untuk footer */
     .footer {
         text-align: center;
@@ -155,15 +150,19 @@ if error_msg:
     st.error(error_msg)
     st.stop()
 
-# ===================================================================
-# >>> BLOK PEMBERSIHAN DATA UNTUK MENCEGAH ERROR <<<
-# ===================================================================
-# Hapus baris dengan nilai NaN di kolom penting untuk mencegah error
+# Setelah load_data
+df, error_msg = load_data()
+
+if error_msg:
+    st.error(error_msg)
+    st.stop()
+
+# Tambahkan pembersihan data
+# Hapus baris dengan nilai NaN di kolom penting
 df = df.dropna(subset=['primary_diagnosis', 'region', 'gender', 'admission_date'])
-# Pastikan kolom readmission_risk_score adalah numerik, lalu hapus yang bukan angka
+# Pastikan kolom readmission_risk_score adalah numerik
 df['readmission_risk_score'] = pd.to_numeric(df['readmission_risk_score'], errors='coerce')
 df = df.dropna(subset=['readmission_risk_score'])
-# ===================================================================
 
 # 3. Sidebar Filter yang Dinamis
 st.sidebar.markdown("###  Pusat Kontrol Filter")
@@ -185,7 +184,7 @@ selected_region = st.sidebar.multiselect(
     default=region_options, # Default pilih semua
 )
 
-# Filter Gender
+# Filter Gender (Tambahan untuk variasi)
 gender_options = df["gender"].unique().tolist()
 selected_gender = st.sidebar.multiselect(
     "Pilih Gender Pasien:",
@@ -193,7 +192,7 @@ selected_gender = st.sidebar.multiselect(
     default=gender_options,
 )
 
-# Filter Range Waktu
+# Filter Range Waktu (Tambahan agar lebih interaktif)
 min_date = df["admission_date"].min().date()
 max_date = df["admission_date"].max().date()
 date_range = st.sidebar.date_input(
@@ -219,53 +218,14 @@ else:
 st.sidebar.markdown("---")
 st.sidebar.markdown("© 2024 Tim Analisis RS Haisa")
 
-# ===== HEADER BARU - 100% BERUBAH =====
-col1, col2 = st.columns([1, 3])
-
-with col1:
-    st.markdown("""
-    <div style="
-        background: linear-gradient(135deg, #4a90e2 0%, #7cb9e8 100%);
-        padding: 30px 20px;
-        border-radius: 15px;
-        text-align: center;
-        height: 120px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    ">
-        <img src="https://via.placeholder.com/200x80/4a90e2/ffffff?text=🏥+HAISA" 
-             alt="Logo RS Haisa" 
-             style="max-height: 70px; border-radius: 8px;">
+# 4. Header Utama & Konteks (Disesuaikan agar CSS Gradasi muncul)
+st.markdown(f"""
+    <div class="header-container">
+        <h1>🏥 Pusat Analisis Kinerja Rumah Sakit Haisa</h1>
+        <p>Visualisasi Data Klinis & Operasional | Periode: {start_date.strftime('%B %Y')} - {end_date.strftime('%B %Y')}</p>
     </div>
-    """, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
-with col2:
-    st.markdown(f"""
-    <div style="
-        padding: 20px 0;
-        color: #1e3a8a;
-    ">
-        <h1 style="
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin: 0;
-            color: #1e40af;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        ">Pusat Analisis Kinerja</h1>
-        <h2 style="
-            font-size: 1.3rem;
-            margin: 5px 0 0 0;
-            color: #3b82f6;
-            font-weight: 500;
-        ">Rumah Sakit Haisa</h2>
-        <p style="
-            font-size: 1rem;
-            color: #64748b;
-            margin: 10px 0 0 0;
-        ">Periode: {start_date.strftime('%B %Y')} - {end_date.strftime('%B %Y')}</p>
-    </div>
-    """, unsafe_allow_html=True)
 st.info("""
     Selamat datang di Dashboard Kinerja Rumah Sakit Haisa. Dashboard ini dirancang untuk memberikan wawasan mendalam 
     mengenai efisiensi operasional dan kualitas pelayanan klinis berdasarkan data pasien secara nyata. 
@@ -325,7 +285,7 @@ fig_trend = px.line(
     markers=True,
     template="plotly_white",
     labels={'admission_month': 'Bulan Kedatangan', 'Jumlah Pasien': 'Total Pasien'},
-    color_discrete_sequence=['#4a90e2'] # Warna tunggal untuk menghindari 'undefined'
+    color_discrete_sequence=['#4a90e2']  # Warna tunggal untuk garis
 )
 fig_trend.update_xaxes(dtick="M1", tickformat="%b\n%Y")
 fig_trend.update_layout(
@@ -346,7 +306,7 @@ fig_risk = px.bar(
     risk_data, 
     x="primary_diagnosis", 
     y="readmission_risk_score", 
-    color_discrete_sequence=['#4a90e2'], # Warna tunggal untuk menghindari 'undefined'
+    color_discrete_sequence=['#4a90e2'],  # Menggunakan warna tunggal
     template="plotly_white",
     labels={'primary_diagnosis': 'Kategori Diagnosis', 'readmission_risk_score': 'Rerata Skor Risiko (%)'}
 )
@@ -364,9 +324,11 @@ st.markdown("### Karakteristik Pasien")
 # --- Bagian Distribusi Usia ---
 st.markdown("#### Distribusi Usia & Gender Pasien")
 st.markdown("Memahami profil umur dan jenis kelamin pasien yang dilayani.")
+# Pastikan data gender tidak memiliki nilai NaN
+df_clean = df_selection.dropna(subset=['gender'])
 
 fig_age = px.histogram(
-    df_selection, 
+    df_clean, 
     x="age", 
     color="gender", 
     nbins=20,
@@ -374,7 +336,7 @@ fig_age = px.histogram(
     template="plotly_white",
     labels={'age': 'Usia Pasien (Tahun)', 'gender': 'Gender'},
     opacity=0.8,
-    color_discrete_map={'Male': '#4a90e2', 'Female': '#ff6b9d'} # Pemetaan warna eksplisit
+    color_discrete_map={'Male': '#4a90e2', 'Female': '#ff6b9d'}  # Pemetaan warna eksplisit
 )
 fig_age.update_layout(
     font=dict(family="Inter", size=12, color="#333"),
@@ -391,6 +353,6 @@ st.dataframe(df_selection.head(10), use_container_width=True)
 # Footer
 st.markdown("""
 <div class="footer">
-    <p>© 2024 Rumah Sakit Haisa | Dikembangkan oleh Tim Analisis Data</p>
+    <p>© 2024 Rumah Sakit Haisa </p>
 </div>
 """, unsafe_allow_html=True)
