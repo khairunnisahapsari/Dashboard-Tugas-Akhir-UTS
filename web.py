@@ -237,7 +237,8 @@ else:
 st.markdown(f"""
     <div class="header-container">
         <div class="logo-container">
-            <img src="logo_haisa.png" alt="Logo Rumah Sakit Haisa" onerror="this.src='https://via.placeholder.com/200x80/4a90e2/ffffff?text=RS+HAISA'">
+            <img src="https://via.placeholder.com/250x90/4a90e2/ffffff?text=RS+HAISA" 
+                 alt="Logo Rumah Sakit Haisa">
         </div>
         <div class="text-container">
             <h1>🏥 Pusat Analisis Kinerja Rumah Sakit Haisa</h1>
