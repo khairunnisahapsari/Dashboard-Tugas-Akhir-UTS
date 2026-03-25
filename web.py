@@ -219,11 +219,25 @@ else:
 st.sidebar.markdown("---")
 st.sidebar.markdown("© 2024 Tim Analisis RS Haisa")
 
-# 4. Header Utama & Konteks (Dengan Logo)
+# 4. Header Utama & Konteks (Dengan Logo - FIXED)
+# Logo placeholder (kalau belum punya file logo_haisa.png)
+logo_base64 = """
+data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAACXBIWXMAAAsTAAALEwEAmpwYAAAc
+... (base64 logo placeholder - aku kasih yang simple)
+"""
+
+# Cek apakah file logo ada, kalau ada pakai file, kalau tidak pakai placeholder
+import os
+if os.path.exists("logo_haisa.png"):
+    logo_url = "logo_haisa.png"
+else:
+    # Buat logo text sederhana sebagai fallback
+    logo_url = "https://via.placeholder.com/200x80/4a90e2/ffffff?text=RS+HAISA"
+
 st.markdown(f"""
     <div class="header-container">
         <div class="logo-container">
-            <img src="logo_haisa.png" alt="Logo Rumah Sakit Haisa">
+            <img src="logo_haisa.png" alt="Logo Rumah Sakit Haisa" onerror="this.src='https://via.placeholder.com/200x80/4a90e2/ffffff?text=RS+HAISA'">
         </div>
         <div class="text-container">
             <h1>🏥 Pusat Analisis Kinerja Rumah Sakit Haisa</h1>
