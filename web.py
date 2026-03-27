@@ -366,13 +366,12 @@ with st.expander("Klik untuk melihat detail analisis dari tim kami", expanded=Tr
         """
         Berdasarkan dashboard di atas, tim kami merumuskan beberapa poin analisis kunci untuk manajemen RS:
 
-        1.  **Profil Pasien:** Mayoritas pasien berada dalam kelompok usia tertentu (periksa histogram usia). Hal ini menunjukkan perlunya penyesuaian fasilitas untuk kelompok umur tersebut.
-        2.  **Kualitas Klinis:** Diagnosis seperti [sebutkan diagnosis dengan skor risiko tertinggi dari grafik bar] memiliki rerata skor risiko readmission tertinggi. Perlu dievaluasi alur perawatan dan edukasi pemulangan (*discharge education*) untuk kategori penyakit ini.
-        3.  **Tren Volume:** Terdapat fluktuasi volume pasien dari bulan ke bulan (periksa grafik tren). Manajemen perlu mengantisipasi lonjakan pasien pada bulan-bulan sibuk untuk optimalisasi staf.
-        4.  **Efisiensi Operasional:** Rata-rata lama rawat inap berada di angka [sebutkan angka KPI 1]. Ini bisa dijadikan patokan untuk membandingkan efisiensi antar departemen atau dengan standar industri.
+        1.  **Profil Pasien:** Mayoritas pasien berada di kelompok usia produktif dan lansia (cek histogram). Hal ini menjadi dasar untuk menyesuaikan fasilitas rawat inap agar lebih ramah lansia.
+        2.  **Kualitas Klinis:**Rata-rata risiko readmission populasi cukup tinggi, yakni 74.8%. Diagnosis dengan risiko di atas rata-rata (seperti Heart Failure) harus menjadi fokus utama dalam pengetatan protokol pemulangan pasien.
+        3.  **Tren Volume:** Fluktuasi kedatangan pasien terpantau sangat dinamis dalam skala besar. Data ini sangat valid untuk digunakan sebagai acuan manajemen dalam pembagian shift staf medis agar beban kerja tetap seimbang.
+        4.  **Efisiensi Operasional:** Rata-rata lama inap pasien adalah 7.8 Hari. Angka ini menunjukkan durasi perawatan yang lebih intensif, sehingga manajemen perlu mengoptimalkan ketersediaan tempat tidur.
 
-        **Rekomendasi:** Dashboard ini harus digunakan oleh manajer operasional dan komite medis secara berkala untuk memantau tren dan merumuskan strategi perbaikan kualitas pelayanan.
-        """
+        **Rekomendasi:** Manajer operasional disarankan memantau dashboard ini secara berkala untuk melakukan intervensi dini pada departemen dengan angka risiko readmission yang meningkat.
     )
 # Footer
 st.markdown("""
