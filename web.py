@@ -372,10 +372,10 @@ with st.expander("Klik untuk melihat detail analisis dari tim kami", expanded=Tr
         4.  **Efisiensi Operasional:** Rata-rata lama inap pasien adalah 7.8 Hari. Angka ini menunjukkan durasi perawatan yang lebih intensif, sehingga manajemen perlu mengoptimalkan ketersediaan tempat tidur.
 
         **Rekomendasi:** Manajer operasional disarankan memantau dashboard ini secara berkala untuk melakukan intervensi dini pada departemen dengan angka risiko readmission yang meningkat.
-    )
+   """ )
 # Footer
 st.markdown("""
 <div class="footer">
-    <p> 2024 Rumah Sakit Haisa </p>
+    <p>© 2024 Rumah Sakit Haisa </p>
 </div>
 """, unsafe_allow_html=True)
