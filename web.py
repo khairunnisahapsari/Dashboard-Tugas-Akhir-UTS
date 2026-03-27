@@ -376,6 +376,6 @@ with st.expander("Klik untuk melihat detail analisis dari tim kami", expanded=Tr
 # Footer
 st.markdown("""
 <div class="footer">
-    <p>© 2024 Rumah Sakit Haisa </p>
+    <p> 2024 Rumah Sakit Haisa </p>
 </div>
 """, unsafe_allow_html=True)
