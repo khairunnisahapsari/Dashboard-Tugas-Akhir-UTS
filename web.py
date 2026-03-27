@@ -367,7 +367,7 @@ with st.expander("Klik untuk melihat detail analisis dari tim kami", expanded=Tr
         Berdasarkan dashboard di atas, tim kami merumuskan beberapa poin analisis kunci untuk manajemen RS:
 
         1.  **Profil Pasien:** Mayoritas pasien berada di kelompok usia produktif dan lansia (cek histogram). Hal ini menjadi dasar untuk menyesuaikan fasilitas rawat inap agar lebih ramah lansia.
-        2.  **Kualitas Klinis:**Rata-rata risiko readmission populasi cukup tinggi, yakni 74.8%. Diagnosis dengan risiko di atas rata-rata (seperti Heart Failure) harus menjadi fokus utama dalam pengetatan protokol pemulangan pasien.
+        2.  **Kualitas Klinis:** Rata-rata risiko readmission populasi cukup tinggi, yakni 74.8%. Diagnosis dengan risiko di atas rata-rata (seperti Heart Failure) harus menjadi fokus utama dalam pengetatan protokol pemulangan pasien.
         3.  **Tren Volume:** Fluktuasi kedatangan pasien terpantau sangat dinamis dalam skala besar. Data ini sangat valid untuk digunakan sebagai acuan manajemen dalam pembagian shift staf medis agar beban kerja tetap seimbang.
         4.  **Efisiensi Operasional:** Rata-rata lama inap pasien adalah 7.8 Hari. Angka ini menunjukkan durasi perawatan yang lebih intensif, sehingga manajemen perlu mengoptimalkan ketersediaan tempat tidur.
 
