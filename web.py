@@ -358,6 +358,22 @@ st.markdown("#### Sampel Data Pasien (10 Baris Pertama)")
 st.markdown("Menampilkan data mentah untuk validasi cepat.")
 st.dataframe(df_selection.head(10), use_container_width=True)
 
+# 8. Analisis & Interpretasi Tim (Teks Narasi)
+st.divider()
+st.markdown("### 📝 Analisis & Interpretasi Tim")
+with st.expander("Klik untuk melihat detail analisis dari tim kami", expanded=True):
+    st.markdown(
+        """
+        Berdasarkan dashboard di atas, tim kami merumuskan beberapa poin analisis kunci untuk manajemen RS:
+
+        1.  **Profil Pasien:** Mayoritas pasien berada dalam kelompok usia tertentu (periksa histogram usia). Hal ini menunjukkan perlunya penyesuaian fasilitas untuk kelompok umur tersebut.
+        2.  **Kualitas Klinis:** Diagnosis seperti [sebutkan diagnosis dengan skor risiko tertinggi dari grafik bar] memiliki rerata skor risiko readmission tertinggi. Perlu dievaluasi alur perawatan dan edukasi pemulangan (*discharge education*) untuk kategori penyakit ini.
+        3.  **Tren Volume:** Terdapat fluktuasi volume pasien dari bulan ke bulan (periksa grafik tren). Manajemen perlu mengantisipasi lonjakan pasien pada bulan-bulan sibuk untuk optimalisasi staf.
+        4.  **Efisiensi Operasional:** Rata-rata lama rawat inap berada di angka [sebutkan angka KPI 1]. Ini bisa dijadikan patokan untuk membandingkan efisiensi antar departemen atau dengan standar industri.
+
+        **Rekomendasi:** Dashboard ini harus digunakan oleh manajer operasional dan komite medis secara berkala untuk memantau tren dan merumuskan strategi perbaikan kualitas pelayanan.
+        """
+    )
 # Footer
 st.markdown("""
 <div class="footer">
